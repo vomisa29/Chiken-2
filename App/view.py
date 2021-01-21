@@ -18,6 +18,9 @@
  *
  * You should have received a copy of the GNU General Public License
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
+ * contribuciones:
+ *
+ * Dario Correal - Version inicial
  """
 
 import config as cf
