@@ -45,7 +45,7 @@ def loadTags(filename):
     Carga todos los tags del archivo y los agrega a la lista de tags
     """
     tagsfile = cf.data_dir + filename
-    input_file = csv.DictReader(open(tagsfile))
+    input_file = csv.DictReader(open(tagsfile, encoding='utf-8'))
     tags = model.createTagList()
     for tag in input_file:
         model.addTag(tags, tag)
