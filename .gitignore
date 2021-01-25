@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.vscode/
 
 # Spyder project settings
 .spyderproject
@@ -127,6 +128,12 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#Python Cache
+# #Data
+# *.csv
+# !Data/GoodReads/books.csv
+# !Data/GoodReads/book_reviews.csv
 
 
 .vim
