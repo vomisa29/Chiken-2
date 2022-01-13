@@ -54,6 +54,6 @@ def loadTags(filename):
 
 def loadBooksTags(catalog):
     """
-    TODO futuro laboratorios
+    TODO laboratorios futuro
     """
     pass
