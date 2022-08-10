@@ -47,7 +47,8 @@ def newCatalog():
     generos y libros. Retorna el catalogo inicializado.
     """
     catalog = {"books": None,
-               "tags": None}
+               "tags": None,
+               "book_tags": None}
     return catalog
 
 
@@ -64,9 +65,8 @@ def addBooks(catalog, booksfile):
     es leyendo todo lo que encuentre en el archivo indicado por filename.
     Cada linea del archivo quedará en una posicion de la lista.
     """
-    books = lt.newList(datastructure="SINGLE_LINKED",
-                       filename=booksfile)
-    catalog["books"] = books
+    catalog["books"] = lt.newList(datastructure="SINGLE_LINKED",
+                                  filename=booksfile)
     return catalog
 
 
@@ -85,9 +85,17 @@ def createTagList(catalog):
     Esta funcion crea una lista vacia. Esta lista se utilizara
     para ir guardando la informacion en el archivo de tags.
     """
-    taglist = lt.newList(datastructure="SINGLE_LINKED")
-    catalog["tags"] = taglist
+    catalog["tags"] = lt.newList(datastructure="SINGLE_LINKED")
     return catalog
+
+
+def addBookTags(catalog, booktagsfile):
+    """
+    Esta funcion crea una lista basado en el archivo de booktags. siga
+    el mismo procedimiento que la funcion addBooks.
+    """
+    # TODO: Modificaciones para el lab 1, completar funcion.
+    pass
 
 
 # Funciones de consulta
@@ -98,3 +106,7 @@ def bookSize(catalog):
 
 def tagSize(catalog):
     return lt.size(catalog["tags"])
+
+
+def bookTagSize(catalog):
+    return lt.size(catalog["book_tags"])

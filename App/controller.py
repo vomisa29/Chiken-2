@@ -73,8 +73,11 @@ def loadTags(control, filename):
     return model.tagSize(catalog)
 
 
-def loadBooksTags(catalog):
+def loadBooksTags(catalog, filename):
+    # TODO: Modificaciones para el lab 1.
+
     """
-    TODO laboratorios futuro
+    Carga los tags de los libros del archivo y los agrega a la lista
+    de tags. Siga el mismo procedimiento que en la carga de libros.
     """
     pass
