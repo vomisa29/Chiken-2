@@ -50,7 +50,8 @@ def printMenu():
     print("Opciones:")
     print("1- Cargar Libros")
     print("2- Cargar Tags")
-    # TODO: Modificaciones para el lab 1, agregar opcion 3.
+    # TODO: Modificaciones lab 1, agregar opcion 3.
+    print("3- Cargar Libros con Tags")
     print("0- Salir")
 
 
@@ -72,6 +73,15 @@ def loadTags(control):
     return tags
 
 
+def loadBooksTags(control):
+    """
+    Carga los libros con sus respectivos tags
+    """
+    booksTags = controller.loadBooksTags(control,
+                                         "GoodReads/book_tags-small1.csv")
+    return booksTags
+
+
 # Se crea el controlador asociado a la vista
 control = newController()
 
@@ -91,9 +101,11 @@ while True:
         tags = loadTags(control)
         print("Total de tags cargados: " + str(tags))
 
-    # TODO: Modificaciones para el lab 1, agregar la opcion 3, ladBookTags().
+    # TODO: Modificaciones lab 1, agregar la opcion 3, ladBookTags().
     elif int(inputs[0]) == 3:
-        pass
+        print("Cargando información de libros con tags....")
+        book_tags = loadBooksTags(control)
+        print("Total de libros con tags cargados: " + str(book_tags))
 
     else:
         sys.exit(0)

@@ -95,7 +95,9 @@ def addBookTags(catalog, booktagsfile):
     el mismo procedimiento que la funcion addBooks.
     """
     # TODO: Modificaciones para el lab 1, completar funcion.
-    pass
+    catalog["book_tags"] = lt.newList(datastructure="SINGLE_LINKED",
+                                      filename=booktagsfile)
+    return catalog
 
 
 # Funciones de consulta
