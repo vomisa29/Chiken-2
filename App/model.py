@@ -39,35 +39,62 @@ los datos.
 """
 
 
-def addBooks(booksfile):
+def newCatalog():
+    """
+    Inicializa el catálogo de libros. Crea una lista vacia para guardar
+    todos los libros, adicionalmente, crea una lista vacia para los autores,
+    una lista vacia para los generos y una lista vacia para la asociación
+    generos y libros. Retorna el catalogo inicializado.
+    """
+    catalog = {"books": None,
+               "tags": None}
+    return catalog
+
+
+# Funciones para agregar informacion al catalogo
+
+def addBooks(catalog, booksfile):
     """
     Para guardar los libros provenientes del archivo CSV
     vamos a crear una lista, en donde quedarán todos los datos.
 
     No es importante entender como funciona esta lista por ahora.
 
-    La funcion newList crea una lista de muchas formas.  Una de ellas
+    La funcion newList crea una lista de muchas formas. Una de ellas
     es leyendo todo lo que encuentre en el archivo indicado por filename.
     Cada linea del archivo quedará en una posicion de la lista.
     """
-    books = lt.newList(datastructure='SINGLE_LINKED',
+    books = lt.newList(datastructure="SINGLE_LINKED",
                        filename=booksfile)
-    return books
+    catalog["books"] = books
+    return catalog
 
 
-def addTag(taglist, tag):
+def addTag(catalog, tag):
     """
     Para procesar el archivo de tags vamos a usar de otra forma la lista.
     En este caso, agregaremos cada linea del archivo a la lista, en lugar
     de usar la opcion de crearla con el nombre del archivo.
     """
-    lt.addLast(taglist, tag)
+    lt.addLast(catalog["tags"], tag)
+    return catalog
 
 
-def createTagList():
+def createTagList(catalog):
     """
-    Esta funcion crea una lista vacia.  Esta lista se utilizara
+    Esta funcion crea una lista vacia. Esta lista se utilizara
     para ir guardando la informacion en el archivo de tags.
     """
-    taglist = lt.newList(datastructure='SINGLE_LINKED')
-    return taglist
+    taglist = lt.newList(datastructure="SINGLE_LINKED")
+    catalog["tags"] = taglist
+    return catalog
+
+
+# Funciones de consulta
+
+def bookSize(catalog):
+    return lt.size(catalog["books"])
+
+
+def tagSize(catalog):
+    return lt.size(catalog["tags"])

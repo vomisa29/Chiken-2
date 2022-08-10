@@ -18,11 +18,16 @@
  *
  * You should have received a copy of the GNU General Public License
  * along withthis program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * Contribuciones:
+ *
+ * Dario Correal - Version inicial
  """
 
 import config as cf
 import model
 import csv
+import os
 
 
 """
@@ -30,26 +35,42 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 
-def loadBooks(filename):
+def newController():
     """
-    Carga los libros del archivo.  Por cada libro se toman sus autores y por
+    Crea una instancia del modelo
+    """
+    control = {
+        "model": None
+    }
+    control["model"] = model.newCatalog()
+    return control
+
+
+# Funciones para la carga de datos
+
+def loadBooks(control, filename):
+    """
+    Carga los libros del archivo. Por cada libro se toman sus autores y por
     cada uno de ellos, se crea en la lista de autores, a dicho autor y una
     referencia al libro que se esta procesando.
     """
-    booksfile = cf.data_dir + filename
-    return model.addBooks(booksfile)
+    catalog = control["model"]
+    booksfile = os.path.join(cf.data_dir, filename)
+    catalog = model.addBooks(catalog, booksfile)
+    return model.bookSize(catalog)
 
 
-def loadTags(filename):
+def loadTags(control, filename):
     """
     Carga todos los tags del archivo y los agrega a la lista de tags
     """
-    tagsfile = cf.data_dir + filename
-    input_file = csv.DictReader(open(tagsfile, encoding='utf-8'))
-    tags = model.createTagList()
+    catalog = control["model"]
+    tagsfile = os.path.join(cf.data_dir, filename)
+    input_file = csv.DictReader(open(tagsfile, encoding="utf-8"))
+    catalog = model.createTagList(catalog)
     for tag in input_file:
-        model.addTag(tags, tag)
-    return tags
+        model.addTag(catalog, tag)
+    return model.tagSize(catalog)
 
 
 def loadBooksTags(catalog):

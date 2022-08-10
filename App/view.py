@@ -26,7 +26,6 @@
 import config as cf
 import sys
 import controller
-from DISClib.ADT import list as lt
 assert cf
 
 
@@ -36,6 +35,15 @@ Presenta el menu de opciones  y  por cada seleccion
 se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
+dataFolder = "GoodReads"
+
+
+def newController():
+    """
+    Se crea una instancia del controlador
+    """
+    control = controller.newController()
+    return control
 
 
 def printMenu():
@@ -46,35 +54,42 @@ def printMenu():
     print("0- Salir")
 
 
-def loadBooks():
+def loadBooks(control):
     """
     Carga los libros
     """
-    return controller.loadBooks('GoodReads/books-small.csv')
+    books = controller.loadBooks(control,
+                                 "GoodReads/books-small.csv")
+    return books
 
 
-def loadTags():
+def loadTags(control):
     """
     Carga los Tags
     """
-    return controller.loadTags('GoodReads/tags.csv')
+    tags = controller.loadTags(control,
+                               "GoodReads/tags.csv")
+    return tags
 
+
+# Se crea el controlador asociado a la vista
+control = newController()
 
 """
 Menu principal
 """
 while True:
     printMenu()
-    inputs = input('Seleccione una opción para continuar\n')
+    inputs = input("Seleccione una opción para continuar\n")
     if int(inputs[0]) == 1:
         print("Cargando información de libros....")
-        books = loadBooks()
-        print('Total de libros cargados: ' + str(lt.size(books)))
+        books = loadBooks(control)
+        print("Total de libros cargados: " + str(books))
 
     elif int(inputs[0]) == 2:
         print("Cargando información de tags....")
-        tags = loadTags()
-        print('Total de tags cargados: ' + str(lt.size(tags)))
+        tags = loadTags(control)
+        print("Total de tags cargados: " + str(tags))
 
     # TODO: Modificaciones para el laboratorio 1.
 
